@@ -2,6 +2,7 @@
 const fs = require("fs");
 
 const duos = {};
+let count = 0;
 
 const keepCase = {};
 const allowed = {};
@@ -88,6 +89,7 @@ JSON.parse(fs.readFileSync("english.json")).quotes.forEach(({ text }) => {
     for (let i = 0, max = line.length - 1; i < max; i++) {
       const duo = [line[i], line[i + 1]].join(" ");
       duos[duo] = (duos[duo] || 0) + 1;
+      count++;
     }
   });
 });
@@ -99,3 +101,5 @@ Object.entries(duos)
       console.log(`${count} ${duo}`);
     }
   });
+
+console.warn(`${count} duos`);
